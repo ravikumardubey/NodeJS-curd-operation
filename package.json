@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-sanitizer": "^1.0.6",
+    "express-session": "^1.17.3",
+    "g": "^2.0.1",
+    "helmet": "^7.0.0",
+    "https": "^1.0.0",
+    "ip": "^2.0.1",
+    "massive": "^6.11.2",
+    "moment": "^2.30.1",
+    "morgan": "^1.10.0",
+    "parse-json": "^7.1.0",
+    "pg": "^8.11.3",
+    "serve": "^14.2.1"
+  },
+  "name": "node",
+  "version": "1.0.0",
+  "description": "this is a nodee js basic project ",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "ravi kumar dubey",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
