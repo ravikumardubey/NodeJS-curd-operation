@@ -1,5 +1,5 @@
-
-const userController = require('./userController');
+const userController = require('./controller/userController.js');
+const authController = require('./controller/authController.js');
 const express = require('express');
 var https = require('https');
 const bodyParser = require('body-parser');
@@ -18,12 +18,12 @@ function applyMiddleware() {
   app.use(cors());
   app.use(expressSanitizer());
   app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({extended:true}));
+  app.use(bodyParser.urlencoded({ extended: true }));
   app.use(helmet());
   app.use(session({
-      secret: common.session_key,
-      resave: true,
-      saveUninitialized: false
+    secret: common.session_key,
+    resave: true,
+    saveUninitialized: false
   }));
 }
 /**
@@ -31,8 +31,8 @@ function applyMiddleware() {
  */
 function initializingDatabase() {
   massive(common.connection_string).then(db => {
-      app.set('db', db);
-      console.log('db connected!')
+    app.set('db', db);
+    console.log('db connected!')
   });
 }
 
@@ -40,10 +40,11 @@ function initializingDatabase() {
 app.use(morgan('combined'));
 applyMiddleware();
 initializingDatabase();
-app.post('/users',userController.getusers);
-app.post('/adduser',userController.adduser);
-app.post('/updateuser',userController.updateUser);
-
+app.post('/loginuser', authController.loginuser);
+app.post('/users', userController.getusers);
+app.post('/adduser', userController.adduser);
+app.post('/updateuser', userController.updateUser);
+app.post('/userlist', userController.userllst);
 
 // starting the server
 app.listen(4000, () => {

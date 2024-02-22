@@ -1,5 +1,5 @@
 require('body-parser');
-const common = require('./config.js').connection;
+const common = require('../config.js').connection;
 var ip = require("ip");
 var moment= require('moment');
 //Fetch record from user table
@@ -58,10 +58,23 @@ const updateUser= async(req, res)=>{
   })
 }
 
+const userllst = async(req,res)=>{
+  let query = 'select * from users';
+  const value=[]
+  common.query(query , value, function(err, result){
+    if(err){
+      res.status(200).end("Record not inserted"+err)
+    }else{
+      res.send(result.rows);
+    }
+  })
+}
+
 
 //Add record to user table
 module.exports = {
   getusers,
   adduser,
-  updateUser
+  updateUser,
+  userllst
 };
